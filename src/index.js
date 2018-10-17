@@ -1,24 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
-import { FirstStore } from './stores/firstStore';
-import App from './components/App';
-import { SecondStore } from './stores/secondStore';
-import { ThirdStore } from './stores/thirdStore';
+import App from "./App";
+import { InputStore } from './stores/inputStore';
+import { ItemsStore } from './stores/itemsStore';
 
-const firstStore = new FirstStore();
-const secondStore = new SecondStore(firstStore);
-const thirdStore = new ThirdStore();
-
-setTimeout(() => {
-    firstStore.addCity({ keyCode: 13, target: { value: 'Warsawa' } })
-}, 4000);
+const itemsStore = new ItemsStore();
+const inputStore = new InputStore(itemsStore);
 
 const Main = () => (
-    <Provider 
-        firstStore={firstStore}
-        secondStore={secondStore}
-        thirdStore={thirdStore}
+    <Provider
+        inputStore={inputStore}
+        itemsStore={itemsStore}
     >
         <App />
     </Provider>

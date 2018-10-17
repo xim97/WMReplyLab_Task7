@@ -9,7 +9,7 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: 3000
+        port: 8000
     },
     module: {
         rules: [
@@ -25,11 +25,18 @@ module.exports = {
                         ],
                         plugins: [
                             ['@babel/plugin-proposal-decorators', { legacy: true }],
-                            ["@babel/plugin-proposal-class-properties", { "loose" : true }]
+                            ["@babel/plugin-proposal-class-properties", { "loose": true }]
                             // ['@babel/plugin-syntax-decorators', { decoratorsBeforeExport: true }],
                         ]
                     }
                 }
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    { loader: "style-loader" },
+                    { loader: "css-loader" }
+                ]
             }
         ]
     }
